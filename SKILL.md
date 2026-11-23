@@ -1,6 +1,6 @@
 ---
 name: empirical-study-design-and-gold-set-toolkit
-description: Designs empirical evaluations end to end, from a stated estimand through a power or sensitivity analysis with validity-threat checks, and builds gold-standard reference (annotation/eval) sets with disagreement-preserving typing, annotator blinding, and leakage controls. Use whenever a project needs to plan a study, evaluation, benchmark, or reference dataset — deciding what claims are testable now versus what needs data collection, what validity threats and ethics obligations apply, how to size a sample or reference set defensibly, or how to construct a human-annotated gold set that will not be circular, leaky, artificial, or conflicted.
+description: Designs empirical evaluations from estimand to power analysis with validity-threat checks, and builds gold-standard annotation sets with disagreement-preserving labels, blinding and leakage control. Use when planning a study, benchmark or reference dataset, or sizing a sample.
 ---
 
 # Empirical Study Design and Gold-Set Toolkit

@@ -48,25 +48,41 @@ a number:
   inference, and budget — in that order — instead of treating "we need a lot of data"
   as a calculation.
 
-## Installation
+## Works with
 
-This is an [Agent Skill](https://www.anthropic.com/news/skills) following the portable
-`SKILL.md` convention. To use it:
+| Surface | How | Status |
+|---|---|---|
+| Claude Code | native skill (`./install.sh --claude`) | not tested |
+| Codex | native skill via `.agents/skills` (`./install.sh --agents`) | not tested |
+| Gemini CLI | native skill via `.agents/skills`, pointer in `GEMINI.md` | not tested |
+| Cursor | native skill via `.agents/skills`, reads `AGENTS.md` | not tested |
+| Copilot | pointer to `AGENTS.md` (`./install.sh --copilot`) | not tested |
+| ChatGPT / Claude.ai / Gemini (chat) | prompt (`PROMPT.md`) | not tested |
 
-- **In Claude Code:** copy this folder into `.claude/skills/empirical-study-design-and-gold-set-toolkit/`
-  in your project (or your user-level skills directory), and it will be available for
-  Claude to invoke automatically when relevant, or on request.
-- **In any other agent runtime that supports the `SKILL.md` convention:** copy this
-  folder into that runtime's equivalent skills directory. The package is plain Markdown
-  with no external dependencies, so it should load anywhere the convention is
-  supported.
-- **For a human reader:** `SKILL.md` is a complete, self-contained methodology document
-  on its own — open it directly if you just want to read or apply the process by hand.
+## Quick start
 
-No scripts are bundled with this skill; it is a planning and construction methodology,
-not a runnable tool. Everything an agent needs to execute the process end to end lives
-in `SKILL.md`, with longer reference tables split into `references/` so the main file
-stays navigable.
+```sh
+git clone https://github.com/hyderhusainarastu/empirical-study-design-and-gold-set-toolkit
+cd empirical-study-design-and-gold-set-toolkit
+./install.sh --claude              # ~/.claude/skills/<name>
+./install.sh --agents --project .  # .agents/skills (Codex, Cursor, Gemini CLI)
+./install.sh --copilot --project . # pointer block for Copilot
+```
+
+Run `./install.sh -h` for all options (`--copy`, `--dry-run`, `--uninstall`). It never overwrites paths it does not own.
+
+For a chat model with no skill support, paste `PROMPT.md`, or use this short version and then describe your study:
+
+```text
+Act as a research-methods assistant. For my study: (1) classify each claim as
+testable or interpretive; (2) pick a scope tier; (3) audit validity threats with
+detection, mitigation and residual risk; (4) walk estimand -> design -> variance
+assumptions -> power -> sample size, and refuse to give a number if a step is
+missing; (5) type each gold-set construct and keep expert disagreement as data.
+Ask me for missing inputs; do not invent them.
+```
+
+`SKILL.md` is also a complete methodology document you can read and apply by hand. No scripts are bundled beyond the installer; the skill is a planning methodology, not a runnable tool.
 
 ## Package contents
 
@@ -77,6 +93,8 @@ references/validity-threat-catalog.md       22-item generalized validity-threat 
 references/gold-set-construct-typing.md     8 worked construct-typing examples, all 6 types
 references/gold-set-governance-checklist.md the full 17-obligation gold-set checklist
 examples/worked-example-synthetic.md        a complete synthetic walkthrough, start to finish
+AGENTS.md, PROMPT.md                        agent instructions and paste-in prompt
+install.sh, test_install.sh                 installer and its offline test
 LICENSE                                     MIT
 ```
 
@@ -106,3 +124,20 @@ see how the abstract checklist in `SKILL.md` cashes out in an actual document.
 ## License
 
 MIT. See `LICENSE`.
+
+## Limits
+
+Methodology only: it does not compute power for you or replace a statistician or an ethics review. The install status above is "not tested" until each surface is run.
+
+## Related
+
+- [pre-submission-manuscript-audit](https://github.com/hyderhusainarastu/pre-submission-manuscript-audit)
+- [adversarial-peer-review-role](https://github.com/hyderhusainarastu/adversarial-peer-review-role)
+- [llm-routing-and-judge-eval-harness-pattern](https://github.com/hyderhusainarastu/llm-routing-and-judge-eval-harness-pattern)
+
+## Keywords
+
+study design, power analysis, sample size, gold standard, annotation, inter-annotator agreement, validity threats, benchmark, LLM evaluation, data leakage.
+
+---
+Part of palimnote-skills - more at https://github.com/hyderhusainarastu
